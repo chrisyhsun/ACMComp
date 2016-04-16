@@ -1,0 +1,111 @@
+import java.util.Scanner;
+
+/**
+ * Created by chris on 4/15/2016.
+ */
+public class Recount {
+    /*public static void main(String[] args) {
+        Scanner reader = new Scanner(System.in);
+        int cases = Integer.parseInt(reader.nextLine());
+        for(int i = 0; i < cases; i++) {
+            int sam = 0;
+            int samVote = 0;
+            int anjie = 0;
+            int anjieVote = 0;
+            String[] tmp2 = reader.nextLine().split(" ");
+            System.out.printf("tmp2[0], tmp2[1], tmp2[2] %s %s %s\n", tmp2[0], tmp2[1], tmp2[2]);
+            int states = Integer.parseInt(tmp2[0]);
+            int[] elec = new int[states + 1];
+            int votes = Integer.parseInt(tmp2[1]);
+            int win = Integer.parseInt(tmp2[2]);
+            for(int j = 1; j < elec.length; j++) {
+                String[] toss = reader.nextLine().split(" ");
+                elec[Integer.parseInt(toss[0])] = Integer.parseInt(toss[1]);
+            }
+            for(int j = 0; j < votes; j++) {
+                String str = reader.nextLine();
+                System.out.println(str);
+                String[] tmp = str.split(" ");
+                int cur = Integer.parseInt(tmp[0]);
+                String name = tmp[1];
+                reader.nextLine();
+                if(name.equalsIgnoreCase("SAM")) {
+                    sam += elec[cur];
+                    samVote++;
+                }
+                else if(name.equalsIgnoreCase("ANJIE")) {
+                    anjie += elec[cur];
+                    anjieVote++;
+                }
+            }
+            if(sam >= win && anjie >= win) {
+                System.out.println("TIE");
+            }
+            else if(sam >= win && anjie < win) {
+                System.out.println("SAM");
+            }
+            else if(sam < win && anjie >= win) {
+                System.out.println("ANJIE");
+            }
+            else {
+                if(samVote > anjieVote) {
+                    System.out.println("SAM");
+                }
+                else if(anjieVote > samVote) {
+                    System.out.println("ANJIE");
+                }
+                else {
+                    System.out.println("TIE");
+                }
+            }
+        }
+    }*/
+
+    public static void main(String[] args) {
+        Scanner reader = new Scanner(System.in);
+        int cases = reader.nextInt();
+        for(int i = 0; i < cases; i++) {
+            int sam = 0;
+            int samVotes = 0;
+            int anjie = 0;
+            int anjieVotes = 0;
+            int states = reader.nextInt();
+            int[] elec = new int[states + 1];
+            int votes = reader.nextInt();
+            int win = reader.nextInt();
+            for(int j = 0; j < states; j++) {
+                elec[reader.nextInt()] = reader.nextInt();
+            }
+            reader.nextLine();
+            for(int m = 0; m < votes; m++) {
+                String[] tmp = reader.nextLine().split(" ");
+                int cur = Integer.parseInt(tmp[0]);
+                if(tmp[1].equalsIgnoreCase("sam")) {
+                    samVotes++;
+                    sam += elec[cur];
+                }
+                if(tmp[1].equalsIgnoreCase("anjie")) {
+                    anjieVotes++;
+                    anjie += elec[cur];
+                }
+            }
+            if(sam >= win && anjie < win) {
+                System.out.println("SAM");
+            }
+            else if(sam < win && anjie >= win) {
+                System.out.println("ANJIE");
+            }
+            else {
+                if(samVotes > anjieVotes) {
+                    System.out.println("SAM");
+                }
+                else if(anjieVotes > samVotes) {
+                    System.out.println("ANJIE");
+                }
+                else {
+                    System.out.println("TIE");
+                }
+            }
+        }
+    }
+}
